@@ -25,6 +25,8 @@ set(groot, 'defaultTextInterpreter', 'latex');
 set(groot, 'defaultLegendInterpreter', 'latex');
 
 %% Part (a)
+G = 6.67260e-11; % [m^3/(kg*s^2)]
+
 mustar = 0.001;
 
 %initial condition: x = 0; xdot = 0
@@ -46,14 +48,55 @@ x0 = (r1+r2)/2;
 % x0 = 0.9;
 xL1 = fzero(f,x0);
 
-disp(xL1);
+fprintf('The position of the first Lagrange libration point, L1 is %f ',xL1);
 
-%% Part (b)
+%% Part (b) and (c)
 
-% X = [x,y,xdot,ydot]';
+% X = [x;y;xdot;ydot];
 
-dX_dt = CR3BP(X,mustar);
+X0 = [xL1;0;0;0.5];
 
-% time = 1/sqrt(G*(m1+m2)/(r1+r2)^3);
-% 
-% x_0 = [0,y,0,ydot]';
+% time = 1/sqrt(G*(m1+m2)/(r12)^3); adimensionalized t = [0,1]
+
+times = 0:1e-4:1;
+
+f = @(t,X) CR3BP(X,mustar);
+
+[t,X] = RK4(f,times,X0);
+
+[t_ode45,X_ode45] = ode45(f,times,X0);
+
+figure;
+plot(times,X(:,1),'r');
+hold on;
+plot(times,X_ode45(:,1),'b');
+legend('RK4','ode45')
+xlabel('t [-]')
+ylabel('x')
+
+figure;
+plot(times,X(:,2),'r')
+hold on;
+plot(times,X_ode45(:,2),'b');
+legend('RK4','ode45')
+xlabel('t [-]')
+ylabel('y')
+
+figure;
+plot(times,X(:,3)','r')
+hold on;
+plot(times,X_ode45(:,3),'b');
+legend('RK4','ode45')
+xlabel('t [-]')
+ylabel('$\dot{x}$')
+
+figure;
+plot(times,X(:,4)','r')
+hold on;
+plot(times,X_ode45(:,4),'b');
+legend('RK4','ode45')
+xlabel('t [-]')
+ylabel('$\dot{x}$')
+
+%%  Part (d)
+
