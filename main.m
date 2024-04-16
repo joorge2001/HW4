@@ -44,11 +44,11 @@ r2 = 1-mustar;
 % abs due to the modulus
 f = @(xL1) -(1-mustar)/abs(xL1+mustar)^3*(xL1+mustar) - mustar/abs(xL1-1+mustar)^3*(xL1-1+mustar) + xL1;
 
-x0 = (r1+r2)/2;
+x0 = 2*(r1+r2)/3;
 % x0 = 0.9;
 xL1 = fzero(f,x0);
 
-fprintf('The position of the first Lagrange libration point, L1 is %f ',xL1);
+fprintf('The position of the first Lagrange libration point (L1) is %f ',xL1);
 
 %% Part (b) and (c)
 
