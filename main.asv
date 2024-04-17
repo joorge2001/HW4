@@ -106,11 +106,7 @@ dt = 0.001;
 
 xdtof = shoot(X0(1), X0(4), mustar, dt);
 
-dt_vector = [0.05, 0.01, 0.01, 0.005, 0.001, 0.0005, 0.0001];
-
-% Dt analysis 
-PlotYfvsDt(X0(1), X0(4), mustar,dt_vector)
-
+for i=
 
 %% Part (e)
 % Left and right boundaries for exploration of solutions with the secant method
