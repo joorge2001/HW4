@@ -57,7 +57,7 @@ smaller_primary = plot(r2, 0 ,'o','MarkerFaceColor','b','MarkerEdgeColor','k');
 legend([orbits(1) orbits(2) orbits(3) orbits(4) orbits(5) L1 smaller_primary],...
     {'d = 0.010','d = 0.015','d = 0.020', 'd = 0.025', 'd = 0.030', 'L1 Point', 'Smaller Primary'})
 
-title('Lyapunov Orbits: Position in $O_{xy}$ plane');
+title('Lyapunov Orbits: Position in $O_{xy}$ plane','FontSize',17);
 xlabel('x')
 ylabel('y')
 
